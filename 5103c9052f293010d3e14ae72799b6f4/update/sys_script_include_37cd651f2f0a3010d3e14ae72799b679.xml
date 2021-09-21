@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_61374_hackathon.VisaMyDataConfig</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>VisaMyDataConfig</name>
+        <script><![CDATA[var VisaMyDataConfig = Class.create();
+VisaMyDataConfig.prototype = {
+    initialize: function() {},
+   perspective: [{
+        name: 'requester',
+        label: 'Requester',
+        roles: ''
+    },{
+        name: 'fulfiller',
+        label: 'Fulfiller',
+        roles: 'itil'
+    }],
+ 
+    state: [{
+        name: 'open',
+        label: 'Open'
+    },{
+        name: 'closed',
+        label: 'Closed'
+    },{
+        name: 'recent',
+        label: 'Recent'
+    },{
+        name: 'all',
+        label: 'All'
+    }],
+ 
+    table: {
+        requester: [{
+            name: 'incident',
+            open: {
+                filter: 'caller_idDYNAMIC90d1921e5f510100a9ad2572f2b477fe^active=true',
+                fields: 'number,opened_by,opened_at,short_description'
+            },
+            closed: {
+                filter: 'caller_idDYNAMIC90d1921e5f510100a9ad2572f2b477fe%5Eactive%3Dfalse',
+                fields: 'number,opened_by,opened_at,closed_at,short_description'
+            },
+            recent: {
+                filter: 'caller_idDYNAMIC90d1921e5f510100a9ad2572f2b477fe%5Esys_created_on%3E%3Djavascript%3Ags.beginningOfLast30Days()',
+                fields: 'number,state,opened_by,opened_at,closed_at,short_description'
+            },
+            all: {
+                filter: 'caller_idDYNAMIC90d1921e5f510100a9ad2572f2b477fe',
+                fields: 'number,state,opened_by,opened_at,closed_at,short_description'
+            }
+        },{
+            name: 'sc_req_item',
+            open: {
+                filter: 'requested_forDYNAMIC90d1921e5f510100a9ad2572f2b477fe%5Eactive%3Dtrue',
+                fields: 'number,opened_by,opened_at,short_description'
+            },
+            closed: {
+                filter: 'requested_forDYNAMIC90d1921e5f510100a9ad2572f2b477fe%5Eactive%3Dfalse',
+                fields: 'number,opened_by,opened_at,closed_at,short_description'
+            },
+            recent: {
+                filter: 'requested_forDYNAMIC90d1921e5f510100a9ad2572f2b477fe%5Esys_created_on3E%3Djavascript%3Ags.beginningOfLast30Days()',
+                fields: 'number,request_state,opened_by,opened_at,closed_at,short_description'
+            },
+            all: {
+                filter: 'requested_forDYNAMIC90d1921e5f510100a9ad2572f2b477fe',
+                fields: 'number,request_state,opened_by,opened_at,closed_at,short_description'
+            }
+        }],
+        fulfiller: [{
+            name: 'incident',
+            open: {
+                filter: 'caller_idDYNAMIC90d1921e5f510100a9ad2572f2b477fe^active=true',
+                fields: 'number,caller_id,opened_at,short_description'
+            },
+            closed: {
+                filter: 'caller_idDYNAMIC90d1921e5f510100a9ad2572f2b477fe%5Eactive%3Dfalse',
+                fields: 'number,caller_id,opened_at,closed_at,short_description'
+            },
+            recent: {
+                filter: 'caller_idDYNAMIC90d1921e5f510100a9ad2572f2b477fe%5Esys_created_on3E%3Djavascript%3Ags.beginningOfLast30Days()',
+                fields: 'number,state,caller_id,opened_at,closed_at,short_description'
+            },
+            all: {
+                filter: 'caller_idDYNAMIC90d1921e5f510100a9ad2572f2b477fe',
+                fields: 'number,state,caller_id,opened_at,closed_at,short_description'
+            }
+        }]
+    },
+ 
+    getConfig: function(sp) {
+        return {
+            perspective: this.perspective,
+            state: this.state,
+            table: this.table
+        };
+    },
+	
+    type: 'VisaMyDataConfig'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-23 19:57:59</sys_created_on>
+        <sys_id>37cd651f2f0a3010d3e14ae72799b679</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>VisaMyDataConfig</sys_name>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_update_name>sys_script_include_37cd651f2f0a3010d3e14ae72799b679</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-24 04:58:33</sys_updated_on>
+    </sys_script_include>
+</record_update>

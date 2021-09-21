@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope, $location) {
+    /* widget controller */
+    var c = this;
+    if (!c.data.table) {
+        refreshPage(c.data.config.defaults.table, c.data.config.defaults.perspective, c.data.config.defaults.state);
+    } else {
+		console.log(c.data.table);
+       // window.location.search = '';
+    }
+
+    $scope.selectTable = function(selection) {
+        refreshPage(selection, c.data.perspective, c.data.state);
+    };
+
+    $scope.selectPerspective = function(selection) {
+        refreshPage(c.data.config.table[selection][0].name, selection, c.data.config.state[0].name);
+    };
+    $scope.selectState = function(selection) {
+        refreshPage(c.data.table, c.data.perspective, selection);
+    };
+
+
+    function refreshPage(table, perspective, state) {
+        var tableInfo = getTableInfo(table, perspective);
+        var newSearch = '?id=' + $location.search()['id'];
+        newSearch += '&table=' + tableInfo.name;
+        newSearch += '&filter=' + tableInfo[state].filter;
+        newSearch += '&fields=' + tableInfo[state].fields;
+        newSearch += '&px=' + perspective;
+        newSearch += '&sx=' + state;
+        window.location.search = newSearch;
+    }
+
+    function getTableInfo(table, perspective) {
+        var tableInfo = {};
+        for (var i = 0; i < c.data.config.table[perspective].length; i++) {
+            if (c.data.config.table[perspective][i].name == table) {
+                tableInfo = c.data.config.table[perspective][i];
+            }
+        }
+        return tableInfo;
+    }
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.badge-error {&#13;
+  background-color: #b94a48;&#13;
+}&#13;
+.badge-error:hover {&#13;
+  background-color: #953b39;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>visa-my-servies-filters</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>VISA My Services Filter</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    /* populate the 'data' object */
+    /* e.g., data.table = $sp.getValue('table'); */
+
+    var dconf = new VisaMyDataConfig();
+    data.config = dconf.getConfig($sp);
+
+    data.config.getPerspective = getAuthorisedPerspective();
+    getDefaults();
+
+    if (!input) {
+
+        data.list = [];
+
+        if (data.config.defaults.perspective && $sp.getParameter('table')) {
+            data.perspective = data.config.defaults.perspective;
+            data.state = data.config.defaults.state;
+            data.table = data.config.defaults.table;
+
+            // get perspective or role
+            if ($sp.getParameter("px")) {
+                for (var i = 0; i < data.config.getPerspective.length; i++) {
+                    if ($sp.getParameter('px') == data.config.getPerspective[i].name) {
+                        data.perspective = $sp.getParameter('px');
+                    }
+                }
+            }
+
+            //get Table
+            for (var j = 0; j < data.config.table[data.perspective].length; j++) {
+                if ($sp.getParameter('table') == data.config.table[data.perspective][j].name) {
+                    data.table = $sp.getParameter('table');
+                }
+            }
+
+            //get state or filter
+            if ($sp.getParameter('sx')) {
+                for (var k = 0; k < data.config.state.length; k++) {
+                    if ($sp.getParameter('sx') == data.config.state[k].name) {
+                        data.state = $sp.getParameter('sx');
+                    }
+                }
+            }
+
+            //Get records for all the tables from the script include
+            for (var l in data.config.table[data.perspective]) {
+                getValues(data.config.table[data.perspective][l]);
+            }
+        }
+
+
+    }
+
+    function getAuthorisedPerspective() {
+        var authorisedPerspective = [];
+
+        for (var con in data.config.perspective) {
+            var p = data.config.perspective[con];
+            if (p.roles) {
+                var role = p.roles.split(',');
+                var authorised = false;
+                for (var i = 0; i < role.length; i++) {
+                    if (gs.hasRole(role[i])) {
+                        authorised = true;
+                    }
+                }
+                if (authorised) {
+                    authorisedPerspective.push(p);
+                }
+            }
+        }
+        return authorisedPerspective;
+    }
+
+    function getDefaults() {
+        data.config.defaults = {};
+        if (data.config.getPerspective[0]) {
+            data.config.defaults.perspective = data.config.getPerspective[0].name;
+            for (var i in data.config.state) {
+                var state = data.config.state[i];
+                if (!data.config.defaults.state) {
+                    data.config.defaults.state = state.name;
+                }
+            }
+
+            for (var g in data.config.table[data.config.defaults.perspective]) {
+                var t = data.config.table[data.config.defaults.perspective][g];
+                if (!data.config.defaults.table) {
+                    data.config.defaults.table = t.name;
+                }
+            }
+        }
+    }
+
+    function getValues(tableInfo) {
+        data.filter = tableInfo[data.state].filter;
+        var gr = new GlideRecord(tableInfo.name);
+        gr.addEncodedQuery(tableInfo[data.state].filter);
+        gr.query();
+        if (gr.getRowCount() > 0 || tableInfo.name == data.table) {
+            data.list.push({
+                name: tableInfo.name,
+                label: gr.getLabel(),
+                value: gr.getRowCount()
+            });
+        }
+        
+    }
+$sp.log(data);
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-23 21:58:50</sys_created_on>
+        <sys_id>1b79ce172f8a3010d3e14ae72799b6a5</sys_id>
+        <sys_mod_count>76</sys_mod_count>
+        <sys_name>VISA My Services Filter</sys_name>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_update_name>sp_widget_1b79ce172f8a3010d3e14ae72799b6a5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-24 16:43:48</sys_updated_on>
+        <template><![CDATA[<div>
+  <!-- your widget template -->
+  <h2>MY Data</h2>
+
+  <div class="panel panel-heading" >
+    <div align='center' class="u-space-bottom u-align-center">
+      <b>Perspective</b>
+      <br/>
+      <span ng-repeat="p in data.config.perspective" style="margin: 5px;">
+        <input style="display: inline;" type="radio" name="{{p.name}}" id="{{p.name}}" value="{{p.name}}" 
+               ng-model="c.data.perspective" ng-click="selectPerspective(p.name)" >
+        <label style="display: inline;"  for="{{p.name}}">{{p.label}}</label>
+      </span>
+    </div>
+  </div>
+
+  <div class="panel panel-heading">
+    <div >
+      <button type="button" class="btn btn-default" ng-repeat="b in data.config.state"
+              ng-class = "(c.data.state == b.name)? 'btn btn-primary btn-pressed btn-md' : 'btn btn-default btn-sm'"
+              style="margin: 2px;" 
+              ng-click="selectState(b.name)">{{b.label}}</button>
+
+    </div>
+  </div>
+
+  <div>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="rec in c.data.list"
+          ng-click="selectTable(rec.name)">{{rec.label}} <span class="badge badge-error">{{rec.value}}</span></li>
+    </ul>
+
+  </div>
+
+</div>]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function(spUtil, $scope,$location, $uibModal) {
+	/* widget controller */
+	var c = this;
+	//console.log("location is :" + $location.url());
+	//console.log("location is :" + $location.path());
+
+	spUtil.recordWatch($scope,c.options.table,"",function(name,data){
+		spUtil.update($scope);
+	});
+
+	$scope.$watch("data.current_page", function(val,old){
+		if(val == old)
+			return;
+		c.data.disable_pagination = true;
+		$location.search({
+			id:$location.search().id,
+			p:val
+		});
+	});
+
+
+	c.openDetail = function(reg){
+		console.log(reg);
+		c.modalInstance = $uibModal.open({
+			templateUrl : "hackathon-list-detail.html",
+			controllerAs : "mc",
+			bindings: {
+				resolve: '<',
+				close: '&',
+				dismiss: '&'
+			},
+			controller : function(){
+				var mc = this;
+				mc.reg = reg;
+				mc.fullName = mc.reg.first_name +" " + mc.reg.last_name;
+				mc.modalTitle = mc.fullName + "'s Hackathon Registration";
+				
+				mc.cancel = function () {
+			c.modalInstance.close();
+				};
+			}
+		});
+		
+		
+	}
+
+
+
+
+
+
+
+
+
+
+	// 		$scope.setOrderBy = function(field) {
+	// 		var d = "asc";
+	// 		// descending default sort for date/time columns for UI consistency
+	// 		var fieldType = $scope.data.column_types[field];
+	// 		if (fieldType == "glide_date_time" || fieldType == "glide_date")
+	// 			d = "desc";
+	// 		if ($scope.data.o == field) {
+	// 			if ($scope.data.d == "asc")
+	// 				d = "desc";
+	// 			else
+	// 				d = "asc";
+	// 		}
+
+	// 		if (d === "asc") {
+	// 			spAriaUtil.sendLiveMessage($scope.data.msg.sortingByAsc);
+	// 		} else if (d === "desc") {
+	// 			spAriaUtil.sendLiveMessage($scope.data.msg.sortingByDesc);
+	// 		}
+
+	// 		$scope.data.o = field;
+	// 		$scope.data.d = d;
+	// 		$scope.data.setOrderUserPreferences = true;
+	// 		$scope.setSearch(true);
+	// 	}
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance_vlist</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>table,display_field,title,filter</field_list>
+        <has_preview>false</has_preview>
+        <id>hackathon_registration_list</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Hackathon Registration List</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+
+	data.registrations = [];
+	//data.fields = ["first_name","last_name","email","company","event","comments","state","sys_created_on"];
+	data.labels = [];
+	data.table = options.table;
+	data.max_entries = 10;
+	data.fields = $sp.getListColumns(options.table).split(",");
+	data.current_page = $sp.getParameter("p") || 1;
+	data.first_shown = ((data.current_page - 1) * data.max_entries) + 1;
+	data.last_shown = (data.current_page * data.max_entries);
+
+
+	var regGr = new GlideRecord(options.table);
+	data.labels = $sp.getFields(regGr, data.fields);
+	regGr.orderByDesc('sys_created_on');
+	regGr.setLimit(data.max_entries);
+	regGr.chooseWindow(data.first_shown -1, data.first_shown + data.max_entries -1);
+	regGr.query();
+
+	while (regGr.next()) {
+		var reg = {};
+		$sp.getRecordDisplayValues(reg, regGr, data.fields.toString());
+		$sp.getRecordValues(reg, regGr, 'sys_id');
+		data.registrations.push(reg);
+	}
+
+	/*
+     * Pagination Code starts
+     */
+	var total = new GlideAggregate(options.table);
+	total.addAggregate("COUNT");
+	total.query();
+	total.next();
+	data.total_items = total.getAggregate("COUNT");
+
+
+
+	data.disable_pagination = false;
+	$sp.log(data);
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-13 16:27:40</sys_created_on>
+        <sys_id>f627c18e2fa63010d3e14ae72799b60d</sys_id>
+        <sys_mod_count>107</sys_mod_count>
+        <sys_name>Hackathon Registration List</sys_name>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_update_name>sp_widget_f627c18e2fa63010d3e14ae72799b60d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-20 20:28:38</sys_updated_on>
+        <template><![CDATA[<div class="container">
+  <h2 class="list-reg">List of Registrations</h2>
+  <table class="table table-bordered table-hover table-responsive">
+    <thead>
+      <tr>
+        <th ng-repeat="field in c.data.labels "  ng-click="setOrderBy(field)"
+             scope="col" role="columnheader" aria-sort="{{field == data.o ? (data.d == 'asc'? 'ascending': 'descending') : 'none'}}">
+              <div class="th-title" title="${Sort by} {{field == data.o ? (data.d == 'asc' ?  '${Descending}': '${Ascending}') : '${Ascending}'}}" role="button" tabindex="0" aria-label="{{data.column_labels[field]}}">{{field.label}}</div>
+              <i class="fa" ng-if="field == data.o" ng-class="{'asc': 'fa-chevron-up', 'desc': 'fa-chevron-down'}[data.d]"></i></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="rec in c.data.registrations track by $index ">
+        <td ng-repeat="field in c.data.fields ">{{rec[field]}}</td>
+        <td><a ng-href = "#" ng-click="c.openDetail(rec)">Details</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="pull-right">
+ <ul uib-pagination boundary-links= "true" items-per-page = "c.data.max_entries" total-items = "c.data.total_items"
+       ng-model = "c.data.current_page" class="pagination-sm" rotate = "true" max-size = "5"
+       force-ellipses = "true"
+       ng-disabled = "c.data.disable_pagination"
+       ng-change = "pageChanged()"></ul>
+  <p class="text-right"> Showing {{c.data.first_shown}} - {{c.data.last_shown}} of {{c.data.total_items}}
+</div>]]></template>
+    </sp_widget>
+</record_update>

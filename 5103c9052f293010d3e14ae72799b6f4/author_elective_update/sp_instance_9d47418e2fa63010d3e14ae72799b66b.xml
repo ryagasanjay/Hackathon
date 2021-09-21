@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">89d64d4e2fa63010d3e14ae72799b673</sp_column>
+        <sp_widget display_value="Hackathon Registration List">f627c18e2fa63010d3e14ae72799b60d</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-13 16:28:07</sys_created_on>
+        <sys_id>9d47418e2fa63010d3e14ae72799b66b</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_update_name>sp_instance_9d47418e2fa63010d3e14ae72799b66b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-13 18:46:44</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"table_name": {
+		"value": "3e5481c52f293010d3e14ae72799b6fc",
+		"displayValue": "Registrations"
+	},
+	"table": {
+		"value": "3e5481c52f293010d3e14ae72799b6fc",
+		"displayValue": "Registrations"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="DELETE" query="documentkey=9d47418e2fa63010d3e14ae72799b66b"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</application>
+        <file_path/>
+        <instance_id>181fb031db49fbc0b847ac44d49619f8</instance_id>
+        <instance_name>dev83795</instance_name>
+        <name>sp_instance_9d47418e2fa63010d3e14ae72799b66b</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_instance"&gt;&lt;sp_instance action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;class_name/&gt;&lt;color&gt;default&lt;/color&gt;&lt;css/&gt;&lt;glyph/&gt;&lt;id/&gt;&lt;order&gt;1&lt;/order&gt;&lt;roles/&gt;&lt;short_description/&gt;&lt;size&gt;md&lt;/size&gt;&lt;sp_column display_value="1"&gt;89d64d4e2fa63010d3e14ae72799b673&lt;/sp_column&gt;&lt;sp_widget display_value="Hackathon Registration List"&gt;f627c18e2fa63010d3e14ae72799b60d&lt;/sp_widget&gt;&lt;sys_class_name&gt;sp_instance&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-09-13 16:28:07&lt;/sys_created_on&gt;&lt;sys_id&gt;9d47418e2fa63010d3e14ae72799b66b&lt;/sys_id&gt;&lt;sys_mod_count&gt;2&lt;/sys_mod_count&gt;&lt;sys_name/&gt;&lt;sys_package display_value="Hackathon" source="x_61374_hackathon"&gt;5103c9052f293010d3e14ae72799b6f4&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Hackathon"&gt;5103c9052f293010d3e14ae72799b6f4&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_instance_9d47418e2fa63010d3e14ae72799b66b&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-09-13 18:46:44&lt;/sys_updated_on&gt;&lt;title/&gt;&lt;url/&gt;&lt;widget_parameters&gt;&lt;![CDATA[{
+	"table_name": {
+		"value": "3e5481c52f293010d3e14ae72799b6fc",
+		"displayValue": "Registrations"
+	},
+	"table": {
+		"value": "3e5481c52f293010d3e14ae72799b6fc",
+		"displayValue": "Registrations"
+	}
+}]]&gt;&lt;/widget_parameters&gt;&lt;/sp_instance&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=9d47418e2fa63010d3e14ae72799b66b"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1218368253</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>1903c9052f293010d3e14ae72799b6f6</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-13 18:46:44</sys_created_on>
+        <sys_id>73f6650e2f6a3010d3e14ae72799b604</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>17be07ba5350000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-13 18:46:44</sys_updated_on>
+        <type>Instance</type>
+        <update_guid>bbf6650e6b6a301081076db6bb271903</update_guid>
+        <update_guid_history>bbf6650e6b6a301081076db6bb271903:1218368253,0336a1ca6a6a30102bb9513a27bd1503:-362016294,d947418e38a63010f8dfec8ce831a96d:2121543458</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">8db8a98e2f6a3010d3e14ae72799b6ae</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-13 18:54:12</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance">sp_instance</sys_db_object>
+        <sys_id>774be90bea144e90bf29de526d76a040</sys_id>
+        <sys_metadata>9d47418e2fa63010d3e14ae72799b66b</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_scope_delete display_value="">00569359a9484e1680025715e8eb6984</sys_scope_delete>
+        <sys_update_name>sp_instance_9d47418e2fa63010d3e14ae72799b66b</sys_update_name>
+        <sys_update_version display_value="sp_instance_9d47418e2fa63010d3e14ae72799b66b">73f6650e2f6a3010d3e14ae72799b604</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-13 18:54:12</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

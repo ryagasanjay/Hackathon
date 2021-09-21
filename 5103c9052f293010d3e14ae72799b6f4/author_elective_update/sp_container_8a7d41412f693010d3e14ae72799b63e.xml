@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
+    <sp_container action="DELETE">
+        <background_color/>
+        <background_image/>
+        <background_style>default</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name/>
+        <container_class_name/>
+        <name>Hackathon Registrations - Container 2</name>
+        <order>2</order>
+        <sp_page display_value="hackathon_registrations">fd7d41412f693010d3e14ae72799b63a</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-07-22 21:18:29</sys_created_on>
+        <sys_id>8a7d41412f693010d3e14ae72799b63e</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Hackathon Registrations - Container 2</sys_name>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_update_name>sp_container_8a7d41412f693010d3e14ae72799b63e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-03 16:35:09</sys_updated_on>
+        <title/>
+        <width>container</width>
+    </sp_container>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</application>
+        <file_path/>
+        <instance_id>181fb031db49fbc0b847ac44d49619f8</instance_id>
+        <instance_name>dev83795</instance_name>
+        <name>sp_container_8a7d41412f693010d3e14ae72799b63e</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container"><sp_container action="INSERT_OR_UPDATE"><background_color/><background_image/><background_style>default</background_style><bootstrap_alt>false</bootstrap_alt><class_name/><container_class_name/><name>Hackathon Registrations - Container 2</name><order>2</order><sp_page display_value="hackathon_registrations">fd7d41412f693010d3e14ae72799b63a</sp_page><subheader>false</subheader><sys_class_name>sp_container</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-07-22 21:18:29</sys_created_on><sys_id>8a7d41412f693010d3e14ae72799b63e</sys_id><sys_mod_count>1</sys_mod_count><sys_name>Hackathon Registrations - Container 2</sys_name><sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package><sys_policy/><sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope><sys_update_name>sp_container_8a7d41412f693010d3e14ae72799b63e</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-03 16:35:09</sys_updated_on><title/><width>container</width></sp_container></record_update>]]></payload>
+        <payload_hash>-580001114</payload_hash>
+        <record_name>Hackathon Registrations - Container 2</record_name>
+        <reverted_from/>
+        <source>1903c9052f293010d3e14ae72799b6f6</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-03 16:35:09</sys_created_on>
+        <sys_id>64bfb9bc2ff13010d3e14ae72799b646</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>17b0cde712a0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-03 16:35:09</sys_updated_on>
+        <type>Container</type>
+        <update_guid>acbfb9bc63f13010e47623da2c3c4645</update_guid>
+        <update_guid_history>acbfb9bc63f13010e47623da2c3c4645:-580001114,467d4d0512693010874df13621543ad6:-811994747</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Hackathon Registrations - Container 2">54df35fc2ff13010d3e14ae72799b6b3</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-03 16:35:41</sys_created_on>
+        <sys_db_object display_value="" name="sp_container">sp_container</sys_db_object>
+        <sys_id>5848f08d211a4df4a4200aa3024ee910</sys_id>
+        <sys_metadata>8a7d41412f693010d3e14ae72799b63e</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Hackathon Registrations - Container 2</sys_name>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_scope_delete display_value="">00569359a9484e1680025715e8eb6984</sys_scope_delete>
+        <sys_update_name>sp_container_8a7d41412f693010d3e14ae72799b63e</sys_update_name>
+        <sys_update_version display_value="sp_container_8a7d41412f693010d3e14ae72799b63e">64bfb9bc2ff13010d3e14ae72799b646</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-03 16:35:41</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
