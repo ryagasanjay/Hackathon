@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_vlist">
+    <sp_instance_vlist action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <display_field>name</display_field>
+        <field_list/>
+        <filter table="cmdb_ci_service">service_classification!=^used_for=Production^owned_byDYNAMIC90d1921e5f510100a9ad2572f2b477fe<item display_value="-- None --" endquery="false" field="service_classification" goto="false" newquery="false" operator="!=" or="false" value=""/>
+            <item display_value="Production" endquery="false" field="used_for" goto="false" newquery="false" operator="=" or="false" value="Production"/>
+            <item endquery="false" field="owned_by" goto="false" newquery="false" operator="DYNAMIC" or="false" value="90d1921e5f510100a9ad2572f2b477fe"/>
+        </filter>
+        <glyph/>
+        <id/>
+        <maximum_entries>5</maximum_entries>
+        <order>1</order>
+        <order_by/>
+        <order_direction>asc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">34bb8d5b2f463010d3e14ae72799b6b0</sp_column>
+        <sp_page/>
+        <sp_widget display_value="Simple List">5b255672cb03020000f8d856634c9c28</sp_widget>
+        <sys_class_name>sp_instance_vlist</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-23 17:30:01</sys_created_on>
+        <sys_id>d30c41db2f463010d3e14ae72799b60f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_update_name>sp_instance_vlist_d30c41db2f463010d3e14ae72799b60f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-23 17:35:04</sys_updated_on>
+        <table>cmdb_ci_service</table>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"always_show": {
+		"value": "",
+		"displayValue": ""
+	},
+	"panel_body_height": {
+		"value": "",
+		"displayValue": ""
+	},
+	"image_field": {
+		"value": "",
+		"displayValue": ""
+	},
+	"secondary_fields": {
+		"value": "attestation_score,asset,assigned_to,busines_criticality,category",
+		"displayValue": "attestation_score,asset,assigned_to,busines_criticality,category"
+	},
+	"rounded_images": {
+		"value": "",
+		"displayValue": ""
+	},
+	"list_page": {
+		"value": "ed5f8ec347730200ba13a5554ee49046",
+		"displayValue": "form"
+	},
+	"hide_footer": {
+		"value": "",
+		"displayValue": ""
+	},
+	"view": {
+		"value": "",
+		"displayValue": ""
+	},
+	"disable_record_watcher": {
+		"value": "false",
+		"displayValue": "false"
+	},
+	"filter_acls": {
+		"value": "false",
+		"displayValue": "false"
+	}
+}]]></widget_parameters>
+    </sp_instance_vlist>
+    <sys_translated_text action="delete_multiple" query="documentkey=d30c41db2f463010d3e14ae72799b60f"/>
+</record_update>

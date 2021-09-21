@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-07-22 20:39:45</sys_created_on>
+        <sys_id>e29489c52f293010d3e14ae72799b643</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_61374_hackathon_events.x_61374_hackathon.hack user</sys_name>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_security_acl display_value="x_61374_hackathon_events">2e9489c52f293010d3e14ae72799b63f</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_e29489c52f293010d3e14ae72799b643</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-07-22 20:39:45</sys_updated_on>
+        <sys_user_role display_value="x_61374_hackathon.hack user" name="x_61374_hackathon.hack user">bd23c5052f293010d3e14ae72799b6c7</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>

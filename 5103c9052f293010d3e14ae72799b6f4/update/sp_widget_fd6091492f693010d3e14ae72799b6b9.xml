@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($timeout, $location) {
+  /* widget controller */
+  var c = this;
+	
+	c.submitForm = function(isValid){
+		c.submitted = true;
+		
+		if(!isValid)
+			return;
+		
+		//write variables into the data object
+		c.data.first_name = c.first_name;
+		c.data.last_name = c.last_name;
+		c.data.email = c.email;
+		c.data.company = c.company;
+		c.data.comments = c.comments || '';
+		c.data.event = c.event;
+		c.data.eventSysId = c.event.sys_id;
+		
+		c.server.update().then(function(response){
+			if(response.status == 'success'){
+				
+				c.message = null;
+				c.success = response.message;
+				
+				$timeout(function(){
+					$location.search({
+						id:'index'
+					});
+				},5000);
+			
+			} else if (response.status == 'error'){
+				c.message = response.message;
+			}
+
+		});
+		
+	};
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>hackathon_registrations</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Hackathon Registrations</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+
+	if(!input){
+		var events = [];
+
+		var event = new GlideRecord("x_61374_hackathon_events");
+		event.addEncodedQuery("active=true");
+		event.query();
+		while(event.next()){
+			events.push({
+				"name" : event.getDisplayValue("event_name"),
+				"sys_id" : event.getUniqueValue()
+			});
+		}
+
+		data.events = events;
+	}
+
+	function validateRegistration(email){
+		var isNoDuplicate = true;
+
+		//abort if email already exists
+		if(registrationExists(email)){
+			data.message = gs.getMessage("There is already a pending registration request for that email address. Please pick another one or reset your password via the 'Login' form");
+			data.status = "error";
+			isNoDuplicate = false;	
+		}
+		return isNoDuplicate;
+	}
+
+	function registrationExists(email){
+		var reg = new GlideRecord('x_61374_hackathon_registrations');
+		reg.addQuery("email",email);
+		reg.addQuery("state","pending");
+		reg.query();
+
+		return reg.hasNext();
+	}
+
+	if(input){
+		if(validateRegistration(input.email)){
+			var grX= new GlideRecord('x_61374_hackathon_registrations');
+			grX.initialize();
+			grX.setValue('first_name',input.first_name);
+			grX.setValue('last_name',input.last_name);
+			grX.setValue('comments',input.comments);
+			grX.setValue('company',input.company);
+			grX.setValue('email',input.email);
+			grX.setValue('event',input.eventSysId);
+			grX.setValue('state',"pending");
+			var userRegID = grX.insert();
+
+			if(!gs.nil(userRegID)){
+				data.status = "success";
+				data.message = gs.getMessage("Your Registration has been submitted. You will be redirected to the homepage in a few seconds. If you are not being redirected click on the Logo and you will get back to the homepage");
+			} else {
+				data.status = "error";
+			}
+		}
+		return data;
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-07-22 21:31:19</sys_created_on>
+        <sys_id>fd6091492f693010d3e14ae72799b6b9</sys_id>
+        <sys_mod_count>96</sys_mod_count>
+        <sys_name>Hackathon Registrations</sys_name>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_update_name>sp_widget_fd6091492f693010d3e14ae72799b6b9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-13 16:25:52</sys_updated_on>
+        <template><![CDATA[<!-- Form Name -->
+<div class=""><h3>Hackathon Registration</h3></div>
+
+<form class="" name="registration" ng-submit="c.submitForm(registration.$valid)" novalidate>
+  <fieldset>
+
+    <div ng-if="c.message" id="errorMessage" class="alert alert-danger" role="alert">
+      {{c.message}}
+    </div>
+    <div ng-if="c.success" id="successMessage" class="alert alert-success" role="alert">
+      {{c.success}}
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group" ng-class="{'has-error': registration.first_name.$isvalid && c.submitted}">
+      <!-- <label class="col-md-4 control-label" for="textinput"></label> -->
+      <input id="first_name" name="first_name" ng-model="c.first_name" ng-required="true"
+             type="text" placeholder="First Name" class="form-control input-md">
+      <p ng-show="registration.first_name.$invalid && c.submitted" class="help-block">
+        Your First Name is required.
+      </p>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group" ng-class="{'has-error': registration.last_name.$isvalid && c.submitted}">
+      <!-- <label class="col-md-4 control-label" for="textinput"></label> -->
+      <input id="last_name" name="last_name" ng-model="c.last_name" ng-required="true" type="text" placeholder="Last Name" class="form-control input-md">
+      <p ng-show="registration.last_name.$invalid && c.submitted" class="help-block">
+        Your Last Name is required.
+      </p>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group" ng-class="{'has-error': registration.company.$isvalid && c.submitted}">
+      <!-- <label class="col-md-4 control-label" for="textinput"></label>   -->
+      <input id="company" ng-model="c.company" ng-required="true" name="company" type="text" placeholder="Company" class="form-control input-md">
+      <p ng-show="registration.company.$invalid && c.submitted" class="help-block">
+        Your Company is required.
+      </p>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group" ng-class="{'has-error': registration.email.$isvalid && c.submitted}">
+      <!-- <label class="col-md-4 control-label" for="textinput"></label>   -->
+      <input id="textinput" ng-model="c.email" ng-required="true" name="email" type="text" placeholder="E-Mail" class="form-control input-md">
+      <p ng-show="registration.email.$invalid && c.submitted" class="help-block">
+        Your E-Mail is required.
+      </p>
+    </div>
+
+    <!-- Textarea -->
+    <div class="form-group" ng-class="{'has-error': registration.comments.$isvalid && c.submitted}">
+      <!-- <label class="col-md-4 control-label" for="textarea"></label> -->
+      <textarea ng-model="c.comments" ng-required="true" class="form-control" id="textarea" name="comments" placeholder="Start typing here.."></textarea>
+      <p ng-show="registration.comments.$invalid && c.submitted" class="help-block">
+        Comments are required.
+      </p>
+    </div>
+
+    <!-- Select Basic -->
+    <div class="form-group" ng-class="{'has-error': registration.event.$isvalid && c.submitted}">
+      <label class="control-label " for="event">Event</label>   
+        <select id="event" ng-model="c.event" ng-required="true" name="event"
+                ng-options = "event.name for event in data.events"
+                class="form-control" >
+          <option value="" disabled>-- Choose an Event --</option>
+        </select>
+        <p ng-show="registration.event.$invalid && c.submitted" class="help-block">
+          Your First Name is required.
+        </p>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+      <label class="control-label" for="submit_reg"></label>
+      <button id="submit_reg" name="submit_reg" class="btn btn-success">Submit</button>
+    </div>
+
+  </fieldset>
+</form>]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_ais">
+    <sp_instance_ais action="DELETE">
+        <active>true</active>
+        <ai_search_source_filter/>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <disable_all_suggestions>false</disable_all_suggestions>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <placeholder/>
+        <roles/>
+        <search_application/>
+        <search_results_configuration/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">22bff1fc2ff13010d3e14ae72799b6c3</sp_column>
+        <sp_widget display_value="VISA Homepage Search PLP5 Rev">2b443d8b2fb13010d3e14ae72799b6cc</sp_widget>
+        <sys_class_name>sp_instance_ais</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-20 19:24:08</sys_created_on>
+        <sys_id>e96986962f46b010d3e14ae72799b63a</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Hello</sys_name>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_update_name>sp_instance_ais_e96986962f46b010d3e14ae72799b63a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-20 19:24:33</sys_updated_on>
+        <title>Hello</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"typeahead_search": {
+		"value": "",
+		"displayValue": ""
+	}
+}]]></widget_parameters>
+    </sp_instance_ais>
+    <sys_translated_text action="DELETE" query="documentkey=e96986962f46b010d3e14ae72799b63a"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</application>
+        <file_path/>
+        <instance_id>181fb031db49fbc0b847ac44d49619f8</instance_id>
+        <instance_name>dev83795</instance_name>
+        <name>sp_instance_ais_e96986962f46b010d3e14ae72799b63a</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_instance_ais"&gt;&lt;sp_instance_ais action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;ai_search_source_filter/&gt;&lt;class_name/&gt;&lt;color&gt;default&lt;/color&gt;&lt;css/&gt;&lt;disable_all_suggestions&gt;false&lt;/disable_all_suggestions&gt;&lt;glyph/&gt;&lt;id/&gt;&lt;order&gt;1&lt;/order&gt;&lt;placeholder/&gt;&lt;roles/&gt;&lt;search_application/&gt;&lt;search_results_configuration/&gt;&lt;short_description/&gt;&lt;size&gt;md&lt;/size&gt;&lt;sp_column display_value="2"&gt;22bff1fc2ff13010d3e14ae72799b6c3&lt;/sp_column&gt;&lt;sp_widget display_value="VISA Homepage Search PLP5 Rev"&gt;2b443d8b2fb13010d3e14ae72799b6cc&lt;/sp_widget&gt;&lt;sys_class_name&gt;sp_instance_ais&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2021-08-20 19:24:08&lt;/sys_created_on&gt;&lt;sys_id&gt;e96986962f46b010d3e14ae72799b63a&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;Hello&lt;/sys_name&gt;&lt;sys_package display_value="Hackathon" source="x_61374_hackathon"&gt;5103c9052f293010d3e14ae72799b6f4&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Hackathon"&gt;5103c9052f293010d3e14ae72799b6f4&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_instance_ais_e96986962f46b010d3e14ae72799b63a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2021-08-20 19:24:33&lt;/sys_updated_on&gt;&lt;title&gt;Hello&lt;/title&gt;&lt;url/&gt;&lt;widget_parameters&gt;&lt;![CDATA[{
+	"typeahead_search": {
+		"value": "",
+		"displayValue": ""
+	}
+}]]&gt;&lt;/widget_parameters&gt;&lt;/sp_instance_ais&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=e96986962f46b010d3e14ae72799b63a"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1927400401</payload_hash>
+        <record_name>Hello</record_name>
+        <reverted_from/>
+        <source>1903c9052f293010d3e14ae72799b6f6</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-20 19:24:34</sys_created_on>
+        <sys_id>b779ca962f46b010d3e14ae72799b62d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>17b6505a5510000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-20 19:24:34</sys_updated_on>
+        <type>Instance with Search</type>
+        <update_guid>bf79ca962c46b01032732e80ec39a22c</update_guid>
+        <update_guid_history>bf79ca962c46b01032732e80ec39a22c:1927400401,a96986967f46b01031bf823a5da3273d:-2104470301</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Hello">890638db2fc23010d3e14ae72799b6f9</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-23 15:53:45</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance_ais">sp_instance_ais</sys_db_object>
+        <sys_id>2c44219392e14600a1592376e72f1401</sys_id>
+        <sys_metadata>e96986962f46b010d3e14ae72799b63a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Hello</sys_name>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_scope_delete display_value="">00569359a9484e1680025715e8eb6984</sys_scope_delete>
+        <sys_update_name>sp_instance_ais_e96986962f46b010d3e14ae72799b63a</sys_update_name>
+        <sys_update_version display_value="sp_instance_ais_e96986962f46b010d3e14ae72799b63a">b779ca962f46b010d3e14ae72799b62d</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-23 15:53:45</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

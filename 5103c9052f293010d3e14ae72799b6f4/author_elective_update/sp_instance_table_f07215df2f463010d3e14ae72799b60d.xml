@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_table">
+    <sp_instance_table action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <display_field/>
+        <field_list/>
+        <filter/>
+        <glyph/>
+        <id/>
+        <maximum_entries>5</maximum_entries>
+        <order>2</order>
+        <order_by/>
+        <order_direction>asc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">34bb8d5b2f463010d3e14ae72799b6b0</sp_column>
+        <sp_page/>
+        <sp_widget display_value="Data Table from URL Definition">8ae61f55cb21020000f8d856634c9c93</sp_widget>
+        <sys_class_name>sp_instance_table</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-23 17:57:58</sys_created_on>
+        <sys_id>f07215df2f463010d3e14ae72799b60d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_update_name>sp_instance_table_f07215df2f463010d3e14ae72799b60d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-23 17:57:58</sys_updated_on>
+        <table/>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance_table>
+    <sys_translated_text action="DELETE" query="documentkey=f07215df2f463010d3e14ae72799b60d"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</application>
+        <file_path/>
+        <instance_id>181fb031db49fbc0b847ac44d49619f8</instance_id>
+        <instance_name>dev83795</instance_name>
+        <name>sp_instance_table_f07215df2f463010d3e14ae72799b60d</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_table"><sp_instance_table action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><display_field/><field_list/><filter/><glyph/><id/><maximum_entries>5</maximum_entries><order>2</order><order_by/><order_direction>asc</order_direction><roles/><short_description/><size>md</size><sp_column display_value="1">34bb8d5b2f463010d3e14ae72799b6b0</sp_column><sp_page/><sp_widget display_value="Data Table from URL Definition">8ae61f55cb21020000f8d856634c9c93</sp_widget><sys_class_name>sp_instance_table</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2021-08-23 17:57:58</sys_created_on><sys_id>f07215df2f463010d3e14ae72799b60d</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package><sys_policy/><sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope><sys_update_name>sp_instance_table_f07215df2f463010d3e14ae72799b60d</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2021-08-23 17:57:58</sys_updated_on><table/><title/><url/><widget_parameters/></sp_instance_table><sys_translated_text action="delete_multiple" query="documentkey=f07215df2f463010d3e14ae72799b60d"/></record_update>]]></payload>
+        <payload_hash>-54821515</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>1903c9052f293010d3e14ae72799b6f6</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-23 17:57:59</sys_created_on>
+        <sys_id>fc7215df2f463010d3e14ae72799b60f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>17b742974bd0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-23 17:57:59</sys_updated_on>
+        <type>Instance with Table</type>
+        <update_guid>387215df52463010ba547ac69bf6b00f</update_guid>
+        <update_guid_history>387215df52463010ba547ac69bf6b00f:-54821515</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">92a215572f863010d3e14ae72799b6ae</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-08-23 17:58:54</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance_table">sp_instance_table</sys_db_object>
+        <sys_id>004200a3b8ba415e80001f7166eeb169</sys_id>
+        <sys_metadata>f07215df2f463010d3e14ae72799b60d</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_scope_delete display_value="">00569359a9484e1680025715e8eb6984</sys_scope_delete>
+        <sys_update_name>sp_instance_table_f07215df2f463010d3e14ae72799b60d</sys_update_name>
+        <sys_update_version display_value="sp_instance_table_f07215df2f463010d3e14ae72799b60d">fc7215df2f463010d3e14ae72799b60f</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-08-23 17:58:54</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

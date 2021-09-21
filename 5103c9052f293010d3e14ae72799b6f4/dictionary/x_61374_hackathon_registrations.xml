@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" label="Registrations" max_length="40" name="x_61374_hackathon_registrations" sizeclass="100" type="collection">
+        <element label="Caller" max_length="32" name="caller" reference="sys_user" type="reference"/>
+        <element label="Comments" max_length="4000" name="comments" type="journal_input"/>
+        <element label="Company" max_length="40" name="company" type="string"/>
+        <element label="Email" max_length="40" name="email" type="string"/>
+        <element label="Event" max_length="32" name="event" reference="x_61374_hackathon_events" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="First Name" max_length="40" name="first_name" type="string"/>
+        <element label="Last Name" max_length="40" name="last_name" type="string"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element choice="1" label="State" max_length="40" name="state" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Pending" sequence="1" value="pending"/>
+                <element inactive_on_update="false" label="In Progress" sequence="2" value="in_progress"/>
+                <element inactive_on_update="false" label="Completed" sequence="3" value="completed"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="caller"/>
+        </index>
+        <index name="index2">
+            <element name="event"/>
+        </index>
+    </element>
+</database>
