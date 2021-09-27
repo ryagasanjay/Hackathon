@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $rootScope) {
+    /* widget controller */
+    var c = this;
+
+    $scope.ci = {
+        'displayValue': '',
+        'value': '',
+        'name': ''
+    };
+
+    $scope.classes = [];
+    $scope.classes.push({
+        'displayValue': 'Business Applications',
+        'value': 'cmdb_ci_business_app',
+        'defaultQuery': 'active=true',
+        'displayFields': 'u_logical_name,u_portfolio_id',
+        'helptext': "You can search the Configuration Item field with the following attributes: 'Name', 'Logical Name', 'EPR ID'"
+    });
+    $scope.classes.push({
+        'displayValue': 'Application Services',
+        'value': 'cmdb_ci_service',
+        'defaultQuery': 'nameNOT LIKE- No EPRID -^sys_class_nameINcmdb_ci_service,cmdb_ci_service_discovered^service_classification=Application Service',
+        'displayFields': 'u_app_ci,used_for',
+        'helptext': "You can search the Configuration Item field with the following attributes: 'Name', 'App CI', 'Environment'"
+    });
+    $scope.classes.push({
+        'displayValue': 'Servers',
+        'value': 'cmdb_ci_server',
+        'defaultQuery': 'os=Windows XP',
+        'displayFields': 'sys_class_name,ip_address',
+        'helptext': "You can search the Configuration Item field with the following attributes: 'Name', 'IP Address'. Please note - the searchable data only contains data primarily in Location-x."
+    });
+    //$scope.classes.push({'displayValue': 'Network Gear', 'value': 'cmdb_ci_netgear', 'defaultQuery': 'discovery_source=ServiceNow', 'displayFields': 'sys_class_name,ip_address', 'helptext': "You can search the Configuration Item field with the following attributes: 'Name', 'IP Address'. Please note - the searchable data only contains data primarily in Location-x."});
+
+    $scope.ci_class = $scope.classes[2];
+
+    $scope.$watch('ci', function() {
+
+        $scope.data.ci = $scope.ci;
+        $scope.loading = true;
+        c.server.update().then(function() {
+            $scope.loading = false;
+        });
+
+    }, true);
+
+    $rootScope.$on('ci_change', function(evt, parms) {
+        $scope.ci = parms;
+    });
+
+    c.evaluateColumn = function(index, column) {
+
+        var cutoff = Math.ceil($scope.data.record.fields.length) / 2;
+
+        return (((index < cutoff) && column == 1) || ((index >= cutoff) && column == 2));
+
+    }
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.bottom{
+float:right;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>ci_viewer</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>CI Viewer</name>
+        <option_schema>[{"name":"limit","section":"other","default_value":"5","label":"Limit","type":"integer"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    /* populate the 'data' object */
+    /* e.g., data.table = $sp.getValue('table'); */
+
+    data.hasItil = gs.hasRole('itil');
+
+    if (input) {
+        var ci_selected = input.ci;
+
+        var ci = new GlideRecord('cmdb_ci');
+        ci.get(input.ci.value);
+
+        var parms = {};
+        parms.sys_id = ci.sys_id + '';
+        parms.table = ci.sys_class_name + '';
+
+        var form = $sp.getForm(parms.table, parms.sys_id, '', 'ci_viewer');
+
+        var record = {};
+        record.table = form.label;
+        record.fields = [];
+        record.sideDisp = [];
+
+        for (var fields in form._view) {
+
+            var field = {};
+
+            field.label = form._fields[form._view[fields].name].label;
+            field.value = form._fields[form._view[fields].name].displayValue;
+            field.hint = form._fields[form._view[fields].name].hint;
+
+            var ignoreField = field.label.toString();
+            if (ignoreField == "Lifecycle Status" || ignoreField == "Operating System") {
+                record.sideDisp.push(field);
+            } else
+                record.fields.push(field);
+
+        }
+
+        //populate ownership
+
+        // 		var ownership = [];
+
+        // 		switch(parms.table + ''){
+
+        // 			case 'cmdb_ci_business_app':
+
+        // 				var app = new GlideRecord('cmdb_ci_business_app');
+        // 				app.get(parms.sys_id);
+
+        // 				var owner_1 = {};
+        // 				owner_1.name = 'Business Owner';
+        // 				owner_1.org = [];
+
+        // 				owner_1.org.push(app.u_business_owner_organization_l1.getDisplayValue());
+        // 				owner_1.org.push(app.u_business_owner_organization_l2.getDisplayValue());
+        // 				owner_1.org.push(app.u_business_owner_organization_l3.getDisplayValue());
+        // 				owner_1.org.push(app.u_business_owner_organization_l4.getDisplayValue());
+        // 				owner_1.org.push(app.u_business_owner_organization_l5.getDisplayValue());
+        // 				ownership.push(owner_1);
+
+        // 				var owner_2 = {};
+        // 				owner_2.name = 'IT Owner';
+        // 				owner_2.org = [];
+
+        // 				owner_2.org.push(app.u_it_asset_owner_organization_l1.getDisplayValue());
+        // 				owner_2.org.push(app.u_it_asset_owner_organization_l2.getDisplayValue());
+        // 				owner_2.org.push(app.u_it_asset_owner_organization_l3.getDisplayValue());
+        // 				owner_2.org.push(app.u_it_asset_owner_organization_l4.getDisplayValue());
+        // 				owner_2.org.push(app.u_it_asset_owner_organization_l5.getDisplayValue());
+        // 				ownership.push(owner_2);
+
+        // 				var owner_3 = {};
+        // 				owner_3.name = 'Support Owner';
+        // 				owner_3.org = [];
+
+        // 				owner_3.org.push(app.u_support_owner_organization_l1.getDisplayValue());
+        // 				owner_3.org.push(app.u_support_owner_organization_l2.getDisplayValue());
+        // 				owner_3.org.push(app.u_support_owner_organization_l3.getDisplayValue());
+        // 				owner_3.org.push(app.u_support_owner_organization_l4.getDisplayValue());
+        // 				owner_3.org.push(app.u_support_owner_organization_l5.getDisplayValue());
+        // 				ownership.push(owner_3);
+        // 				break; 
+
+        // 			case 'cmdb_ci_service':
+
+        // 				var service = new GlideRecord('cmdb_ci_service');
+        // 				service.get(parms.sys_id);
+
+        // 				var app = new GlideRecord('cmdb_ci_business_app');
+        // 				app.get(service.u_app_ci);
+
+        // 				var owner_1 = {};
+        // 				owner_1.name = 'Business Owner';
+        // 				owner_1.org = [];
+
+        // 				owner_1.org.push(app.u_business_owner_organization_l1.getDisplayValue());
+        // 				owner_1.org.push(app.u_business_owner_organization_l2.getDisplayValue());
+        // 				owner_1.org.push(app.u_business_owner_organization_l3.getDisplayValue());
+        // 				owner_1.org.push(app.u_business_owner_organization_l4.getDisplayValue());
+        // 				owner_1.org.push(app.u_business_owner_organization_l5.getDisplayValue());
+        // 				ownership.push(owner_1);
+
+        // 				var owner_2 = {};
+        // 				owner_2.name = 'IT Owner';
+        // 				owner_2.org = [];
+
+        // 				owner_2.org.push(app.u_it_asset_owner_organization_l1.getDisplayValue());
+        // 				owner_2.org.push(app.u_it_asset_owner_organization_l2.getDisplayValue());
+        // 				owner_2.org.push(app.u_it_asset_owner_organization_l3.getDisplayValue());
+        // 				owner_2.org.push(app.u_it_asset_owner_organization_l4.getDisplayValue());
+        // 				owner_2.org.push(app.u_it_asset_owner_organization_l5.getDisplayValue());
+        // 				ownership.push(owner_2);
+
+        // 				var owner_3 = {};
+        // 				owner_3.name = 'Support Owner';
+        // 				owner_3.org = [];
+
+        // 				owner_3.org.push(app.u_support_owner_organization_l1.getDisplayValue());
+        // 				owner_3.org.push(app.u_support_owner_organization_l2.getDisplayValue());
+        // 				owner_3.org.push(app.u_support_owner_organization_l3.getDisplayValue());
+        // 				owner_3.org.push(app.u_support_owner_organization_l4.getDisplayValue());
+        // 				owner_3.org.push(app.u_support_owner_organization_l5.getDisplayValue());
+        // 				ownership.push(owner_3);
+        // 				break; 
+
+        // 			case 'u_cmdb_ci_ucmdb':
+
+        // 				var ucmdb = new GlideRecord('u_cmdb_ci_ucmdb');
+        // 				ucmdb.get(parms.sys_id);
+
+        // 				var owner_1 = {};
+        // 				owner_1.name = 'Business Owner';
+        // 				owner_1.org = [];
+
+        // 				owner_1.org.push(ucmdb.u_business_owner_organization_l1.getDisplayValue());
+        // 				owner_1.org.push(ucmdb.u_business_owner_organization_l1.getDisplayValue());
+        // 				owner_1.org.push(ucmdb.u_business_owner_organization_l3.getDisplayValue());
+        // 				owner_1.org.push(ucmdb.u_business_owner_organization_l4.getDisplayValue());
+        // 				owner_1.org.push(ucmdb.u_business_owner_organization_l5.getDisplayValue());
+        // 				ownership.push(owner_1);
+
+        // 				var owner_2 = {};
+        // 				owner_2.name = 'Asset Owner';
+        // 				owner_2.org = [];
+
+        // 				owner_2.org.push(ucmdb.u_asset_owner_organization_l1.getDisplayValue());
+        // 				owner_2.org.push(ucmdb.u_asset_owner_organization_l2.getDisplayValue());
+        // 				owner_2.org.push(ucmdb.u_asset_owner_organization_l3.getDisplayValue());
+        // 				owner_2.org.push(ucmdb.u_asset_owner_organization_l4.getDisplayValue());
+        // 				owner_2.org.push(ucmdb.u_asset_owner_organization_l5.getDisplayValue());
+        // 				ownership.push(owner_2);
+
+        // 				var owner_3 = {};
+        // 				owner_3.name = 'Support Owner';
+        // 				owner_3.org = [];
+
+        // 				owner_3.org.push(ucmdb.u_support_owner_organization_l1.getDisplayValue());
+        // 				owner_3.org.push(ucmdb.u_support_owner_organization_l2.getDisplayValue());
+        // 				owner_3.org.push(ucmdb.u_support_owner_organization_l3.getDisplayValue());
+        // 				owner_3.org.push(ucmdb.u_support_owner_organization_l4.getDisplayValue());
+        // 				owner_3.org.push(ucmdb.u_support_owner_organization_l5.getDisplayValue());
+        // 				ownership.push(owner_3);
+        // 				break; 
+
+        // 			default:
+
+        // 				var owner_1 = {};
+        // 				owner_1.name = 'Support Owner';
+        // 				owner_1.org = [];
+
+        // 				owner_1.org.push(ci.u_support_organization_l1.getDisplayValue());
+        // 				owner_1.org.push(ci.u_support_organization_l2.getDisplayValue());
+        // 				owner_1.org.push(ci.u_l3_support_organization.getDisplayValue());
+        // 				owner_1.org.push(ci.u_l4_support_organization.getDisplayValue());
+        // 				owner_1.org.push(ci.u_l5_support_organization.getDisplayValue());
+        // 				ownership.push(owner_1);
+
+        // 				var owner_2 = {};
+        // 				owner_2.name = 'Asset Owner';
+        // 				owner_2.org = [];
+
+        // 				owner_2.org.push(ci.u_l1_asset_organization.getDisplayValue());
+        // 				owner_2.org.push(ci.u_l2_asset_organization.getDisplayValue());
+        // 				owner_2.org.push(ci.u_l3_asset_organization.getDisplayValue());
+        // 				owner_2.org.push(ci.u_l4_asset_organization.getDisplayValue());
+        // 				owner_2.org.push(ci.u_l5_asset_organization.getDisplayValue());
+        // 				ownership.push(owner_2);
+
+        // 		}
+
+        // 		record.ownership = ownership;
+
+        data.record = record;
+
+        data.tabs = $sp.getWidget('cview_related_list', parms);
+
+    }
+
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-24 15:51:02</sys_created_on>
+        <sys_id>dd4861a92fb23010d3e14ae72799b636</sys_id>
+        <sys_mod_count>53</sys_mod_count>
+        <sys_name>CI Viewer</sys_name>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_update_name>sp_widget_dd4861a92fb23010d3e14ae72799b636</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-24 21:53:44</sys_updated_on>
+        <template><![CDATA[<div>
+  <h3 class = "text-center">
+    <b class = "text-primary">CMDB CI View</b>
+  </h3>
+
+  <div class = "row">
+
+    <div class = "form-group col-md-6">
+      <label class = "control-label"><b>Select CI Type</b></label>
+      <select class = "form-control" ng-model = "ci_class" ng-options = "class.displayValue for class in classes track by class.value">
+      </select>
+    </div>
+
+    <div class = "form-group col-md-6">
+      <label class = "control-label"><b>Select Configuration Item</b></label>
+      <sn-record-picker field = "ci" table = "ci_class.value" 
+                        default-query = "'nameISNOTEMPTY^' + ci_class.defaultQuery"
+                        display-field = "'name'" display-fields = "ci_class.displayFields" 
+                        search-fields = "'name,' + ci_class.displayFields" value-field = "'sys_id'"></sn-record-picker>
+    </div>
+
+    <div class = "col-md-12">
+      <h5>
+        <b>{{ci_class.helptext}}</b>
+      </h5>
+    </div>
+  </div>
+
+  <div class="col-md-12" ng-if= "loading">
+    <h4>
+      <b>
+        Currently fetching your CI information - please wait.
+      </b> <img src="loader6.gif"/>
+    </h4>
+  </div>
+
+  <div class="panel panel-primary b" ng-if = "ci.value && !loading">
+    <div class="panel-heading">
+      <h2 class = "panel-title">
+        ${{{data.ci.displayValue}} ({{data.record.table}}) - Details}
+      </h2>
+    </div>
+
+    <div class = "panel-body">
+
+      <div class = "col-md-12">
+        <h4>
+          <b>${Configuration Details}</b>
+        </h4>
+      </div>
+
+      <div class="col-md-2">
+        <div class="panel panel-primary" ng-repeat = "field in data.record.sideDisp" >
+          <div class="panel-heading">{{field.label}}</div>
+          <div class="panel-body" align="center">{{field.value}}</div>
+        </div>
+      </div>
+
+
+      <div class = "col-md-4">
+        <p ng-repeat = "field in data.record.fields track by $index" ng-if = "c.evaluateColumn($index, 1)">
+          <b>{{field.label}}:</b> <span data-toggle="tooltip" data-placement="top" title="{{field.hint}}">{{field.value || '(Not available)'}}<span ng-if = "field.hint"> <i class="fa fa-question-circle"></i></span></span>
+        </p>
+      </div>
+
+
+      <div class = "col-md-4">
+        <p ng-repeat = "field in data.record.fields track by $index" ng-if = "c.evaluateColumn($index, 2)">
+          <b>{{field.label}}:</b> <span>{{field.value}}</span>
+        </p>
+      </div>
+
+
+      <div class = "col-md-12">
+        <a  class="bottom" ng-if = "data.hasItil" href = "/cmdb_ci.do?sys_id={{ci.value}}" target = "_href">View Full CI Details</a><br/>
+        <a ng-if = "data.record.table == 'Windows Server' || data.record.table == 'Linux Server' || data.record.table == 'HPUX Server'" href = "https://splunk-it-ops.corp.hpicloud.net/en-US/app/hp_it_ops_app_Infrastructure/hp_server_dashboard?form.field1.earliest=-24h%40h&amp;form.field1.latest=now&amp;form.fqdn={{ci.displayValue}}" target = "_href">View Server Metrics</a>
+      </div>
+    </div>
+
+    <br/>
+  </div>
+
+
+</div> 
+
+
+<!--
+<div class = "col-md-12">
+<h4>
+<b>${Ownership}</b>
+</h4>
+<div class = "col-md-6" ng-repeat = "owners in data.record.ownership track by $index">
+<p>
+<b>{{owners.name}}</b>
+<span ng-repeat = "org in owners.org track by $index">
+<br/>L{{$index+1}}: {{org || 'NOT AVAIL'}}
+</span>
+</p>
+</div>
+</div>
+
+<br/>
+
+<div class = "col-md-12">
+<sp-widget ng-if = "data.tabs" widget="data.tabs"></sp-widget>
+</div>
+</div>
+
+</div> -->
+
+
+
+]]></template>
+    </sp_widget>
+</record_update>

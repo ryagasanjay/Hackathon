@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">464929e92fb23010d3e14ae72799b6de</sp_column>
+        <sp_widget display_value="CI Viewer">dd4861a92fb23010d3e14ae72799b636</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-09-24 15:55:32</sys_created_on>
+        <sys_id>9f49e92d2fb23010d3e14ae72799b64d</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Hackathon" source="x_61374_hackathon">5103c9052f293010d3e14ae72799b6f4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Hackathon">5103c9052f293010d3e14ae72799b6f4</sys_scope>
+        <sys_update_name>sp_instance_9f49e92d2fb23010d3e14ae72799b64d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-09-24 17:00:48</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"limit": {
+		"value": null,
+		"displayValue": ""
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=9f49e92d2fb23010d3e14ae72799b64d"/>
+</record_update>
